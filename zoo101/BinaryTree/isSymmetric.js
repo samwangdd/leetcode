@@ -24,7 +24,7 @@ function isSameTree(rl, rr) {
   if (rl === null) return rr === null
   if (rr === null) return rl === null
 
-  if (rl !== rr) {
+  if (rl.val !== rr.val) {
     return false
   }
 
