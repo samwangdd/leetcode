@@ -10,6 +10,17 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+const isNil = (val) => {
+  const falsy = [null, undefined]
+  if (falsy.includes(val)) {
+    return true
+  }
+}
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+// 迭代
 var inorderTraversal = function (root) {
   const result = []
   // 递归返回的结果是啥？
@@ -18,9 +29,27 @@ var inorderTraversal = function (root) {
     const { left, right, val } = root
 
     left && middleSequence(left)
-    val && result.push(val)
+    !isNil(val) && result.push(val)
     right && middleSequence(right)
   }
   middleSequence(root)
+  return result
+}
+
+// 递归
+var inorderTraversal = function (root) {
+  const result = []
+  const stack = []
+  let node = root
+  while (node || stack.length > 0) {
+    if (node) {
+      stack.push(node)
+      node = node.left
+      continue
+    }
+    node = stack.pop()
+    result.push(node.val)
+    node = node.right
+  }
   return result
 }
