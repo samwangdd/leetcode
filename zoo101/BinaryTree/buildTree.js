@@ -46,6 +46,9 @@ function findInorderIndex(list, target) {
   return index
 }
 
+// preorder = [3,9,20,15,7]
+// inorder = [9,3,15,20,7]
+
 function constructorNewNode(
   preorder,
   inorder,
@@ -58,15 +61,20 @@ function constructorNewNode(
   const inOrderIndex = findInorderIndex(inorder, root) // 根节点的索引
   const rootNode = new TreeNode(root)
 
+  // 前序遍历中的结构 [根节点，左子树，右子树]，左子树的起始索引为 preStart + 1，左子树的长度为 inOrderIndex - inStart，即在中序遍历中根节点之前的节点个数
+  // 中序遍历中的结构 [左子树，根节点，右子树]，所以左子树的个数为 inOrderIndex - inStart
+
+
+
   // 若中序遍历中，根节点之前有值，表示存在左子树
   if (inOrderIndex - inStart >= 1) {
     rootNode.left = constructorNewNode(
       preorder,
       inorder,
-      preStart + 1,
-      preStart + (inOrderIndex - inStart),
-      inStart,
-      inOrderIndex - 1,
+      preStart + 1, // 左子树的前序遍历起始索引
+      preStart + (inOrderIndex - inStart), // 左子树在前序遍历的长度（结束位置）
+      inStart, // 左子树中序遍历起始索引
+      inOrderIndex - 1, // 左子树在中序遍历的长度（结束位置）
     )
   }
 
@@ -75,10 +83,10 @@ function constructorNewNode(
     rootNode.right = constructorNewNode(
       preorder,
       inorder,
-      preStart + (inOrderIndex - inStart) + 1,
-      preLength,
-      inOrderIndex + 1,
-      inLength,
+      preStart + (inOrderIndex - inStart) + 1, // 右子树的前序遍历起始索引
+      preLength, // 右子树在前序遍历的长度（结束位置）
+      inOrderIndex + 1, // 右子树中序遍历起始索引
+      inLength, // 右子树在中序遍历的长度（结束位置）
     )
   }
 
