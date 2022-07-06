@@ -7,7 +7,7 @@
  * }
  */
 /**
- * 遍历
+ * 遍历 traversal
  *
  * @param {TreeNode} root
  * @param {number} k
@@ -34,7 +34,7 @@ var kthSmallest = function (root, k) {
 }
 
 /**
- * 循环
+ * 循环 circulate
  *
  * @param {*} root
  * @param {*} k
