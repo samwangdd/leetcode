@@ -7,6 +7,8 @@
  * }
  */
 /**
+ * 遍历
+ *
  * @param {TreeNode} root
  * @param {number} k
  * @return {number}
@@ -27,6 +29,37 @@ var kthSmallest = function (root, k) {
     }
   }
   travels(root)
+
+  return res[k - 1]
+}
+
+/**
+ * 循环
+ *
+ * @param {*} root
+ * @param {*} k
+ * @return {*}
+ */
+var kthSmallest = function (root, k) {
+  const result = []
+  let current = root
+  const stack = []
+  // 循环终止
+  while (result.length < k && (current || stack.length > 0)) {
+    if (current) {
+      if (current.left) {
+        stack.push(current)
+        current = current.left
+      } else {
+        result.push(current.val)
+        current = current.right
+      }
+    } else {
+      current = stack.pop()
+      result.push(current.val)
+      current = current.right
+    }
+  }
 
   return result[k - 1]
 }
