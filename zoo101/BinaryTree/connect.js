@@ -39,4 +39,25 @@ var connect = function (root) {
 };
 
 // 双指针
-var connect = function (root) {};
+var connect = function (root) {
+  if (root === null) {
+    return root;
+  }
+  // start 为每一层的起始节点
+  let start = root;
+  // current 为遍历的当前节点
+  let current = null;
+  // 如果有子节点
+  while (start.left) {
+    current = start;
+    while (current) {
+      current.left.next = current.right;
+      if (current.next) {
+        current.right.next = current.next.left;
+      }
+      current = current.next;
+    }
+    start = start.left;
+  }
+  return root;
+};
