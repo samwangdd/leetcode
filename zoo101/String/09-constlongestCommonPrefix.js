@@ -6,15 +6,27 @@ const findPrefix = (a, b) => {
     return i > 0 ? a.substring(0, i) : '';
 }
 
-function constlongestCommonPrefix(strArr) {
-    if (strArr.length > 0) {
-        let prefix = strArr[0]
-        for (let i = 1; i < strArr.length; i++) {
-            prefix = findPrefix(prefix, strArr[i])
+function longestCommonPrefix(strs) {
+    if (strs.length === 0) return '';
 
+    let i = 0;
+    let flag = true;
+
+    while (flag) {
+        if (strs[0].length > i) {
+            const char = strs[0].charAt(i);
+            for (let j = 1; j < strs[0].length; j++) {
+                if (strs[j].length < i || strs[j].charAt(i) !== char) {
+                    flag = false;
+                    break;
+                }
+
+            }
+        } else {
+            flag = false
         }
-        return prefix
+        i++;
     }
 
-    return ''
+    return strs[0].substring(0, i - 1)
 }
