@@ -1,18 +1,5 @@
 function onlyItem(nums) {
-    const obj = {};
-    for (const n of nums) {
-        if (obj[n]) {
-            obj[n]++
-        } else {
-            obj[n] = 1
-        }
-    }
-    const res = []
-    for (const [k, v] of Object.entries(obj)) {
-        if (v === 1) {
-            return res.push(k)
-        }
-    }
-
+    const numsGroup = nums.map(num => nums.filter(v => v === num));
+    const res = numsGroup.find(num => num.length === 1)[0]
     return res;
 }
