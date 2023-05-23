@@ -16,7 +16,7 @@ function maxProfit(prices) {
       r = l;
     }
   }
-  // 价格（从右往左）递减，直到第一日的逻辑补充
+  // 价格（从右往左）一直递减，直到第一日的逻辑补充
   if (l !== r) {
     profit += prices[r] - prices[l];
   }
