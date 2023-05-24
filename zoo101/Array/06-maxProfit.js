@@ -6,7 +6,7 @@ function maxProfit(prices) {
     l = max;
 
   while (l > 0) {
-    // 如果价格（从右往左）递减，则 l 指针继续向左移动窗口 
+    // 如果价格（从右往左）递减，则 l 指针继续向左移动窗口
     if (prices[l] > prices[l - 1]) {
       l -= 1;
     } else {
